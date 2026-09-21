@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: "TuneLab"
+message: "If TuneLab helps your experiments, please cite the repository."
+type: software
+authors:
+  - family-names: "jstar"
+version: 0.1.0
+date-released: 2026-09-04
+abstract: "Reproducible, resumable hyperparameter experiments with transparent search strategies."
