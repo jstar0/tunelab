@@ -126,7 +126,7 @@ uv run --with ruff ruff check src tests
 uv build
 ```
 
-See [docs/architecture.md](docs/architecture.md) for the data flow and [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution contract.
+See [docs/architecture.md](docs/architecture.md) for the data flow.
 
 ## Scope and limits
 
@@ -172,8 +172,6 @@ number it produces:
   good-set quantile 0.25, sigma factor 0.18, parent fraction one third,
   mutation rate 0.25).
 
-Every decision, the alternative it rejected, and the remaining weaknesses are
-written out in [docs/design-decisions.md](docs/design-decisions.md).
 
 ## Scope
 
