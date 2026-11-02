@@ -1,6 +1,8 @@
+import "./replay/boot";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
+import { ReplayNotice } from "./replay/ReplayNotice";
 
 type Objective = {
   id: "surface" | "iris" | "wine";
@@ -366,7 +368,9 @@ function App() {
       await refreshRuns();
       await openRun(result.jobs[0]);
       setMessage(
-        `已创建 ${result.jobs.length} 个真实实验；候选序列和每条观察都会持久化。`,
+        import.meta.env.VITE_REPLAY === "1"
+          ? `正在回放 ${result.jobs.length} 个已录制实验：结果是真实运行的记录，不是现场搜索。`
+          : `已创建 ${result.jobs.length} 个真实实验；候选序列和每条观察都会持久化。`,
       );
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "无法创建实验");
@@ -472,8 +476,11 @@ function App() {
           : current,
     );
 
+  const replay = import.meta.env.VITE_REPLAY === "1";
   return (
-    <main>
+    <>
+    {replay && <ReplayNotice />}
+    <main className={replay ? "has-replay" : undefined}>
       <aside>
         <p className="brand">TUNELAB / LOCAL</p>
         <h1>调参实验</h1>
@@ -498,7 +505,9 @@ function App() {
             03　比较
           </button>
         </nav>
-        <small>本地执行 · 公开内置数据 · 不上传代码</small>
+        <small>
+          {replay ? "回放数据 · 公开内置数据" : "本地执行 · 公开内置数据 · 不上传代码"}
+        </small>
       </aside>
       <section className="shell">
         <header>
@@ -1023,6 +1032,7 @@ function App() {
         )}
       </section>
     </main>
+    </>
   );
 }
 

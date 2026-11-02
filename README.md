@@ -1,5 +1,7 @@
 # TuneLab
 
+在线体验（回放数据）：https://jstar0.github.io/tunelab/
+
 TuneLab turns a search space and an objective function into a reproducible experiment: every trial is recorded, checkpoints are atomic, interrupted runs resume, and the result is readable as JSON, CSV, or a self-contained HTML report.
 
 It is deliberately small and transparent. The package is useful when you need to compare search strategies without hiding the dataset, seed, metric, or failed evaluations behind a dashboard.
